@@ -6,6 +6,8 @@ import * as connectionOptions from './config/config';
 import { Answer } from './entity/answer.entity';
 import { Poll } from './entity/poll.entity';
 import { User } from './entity/user.entity';
+import { PollModule } from './poll/poll.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -13,6 +15,8 @@ import { User } from './entity/user.entity';
         ...connectionOptions, autoLoadEntities: true,
         entities: [User,Poll,Answer]
       }),
+      PollModule,
+      AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
