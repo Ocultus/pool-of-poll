@@ -30,6 +30,9 @@ const connectionOptions: ConnectionOptions = {
     cli: {
         migrationsDir: 'src/migrations'
     },
+    entities: [
+        __dirname + "src/entity/**/*.ts"
+     ],
 }
 
 const encryptOptions = {
