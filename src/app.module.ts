@@ -21,8 +21,6 @@ import { AnswerModule } from './answer/answer.module';
       AuthModule,
       UserModule,
       AnswerModule,
-  ],
-  controllers: [AppController],
-  providers: [AppService],
+  ]
 })
 export class AppModule {}
