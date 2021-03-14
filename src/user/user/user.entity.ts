@@ -1,6 +1,9 @@
-import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { encryptOptions } from "src/config/config";
+import { BeforeInsert, BeforeUpdate, Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Answer } from "../../answer/entity/answer.entity";
 import { Poll } from "../../poll/entity/poll.entity";
+import * as bcrypt from 'bcrypt';
+
 
 @Entity()
 export class User {
@@ -8,12 +11,27 @@ export class User {
     id: string;
 
     @Column()
+    username: string
+
+    @Column({nullable: true})
+    lastname: string
+
+    @Column({nullable: true})
+    firstname: string
+
+    @Column()
     email: string
 
-    @Column()
+    @Column({select: false })
     password: string
 
-    @Column()
+    @BeforeUpdate()
+    @BeforeInsert()
+    async hashPassword () {
+      this.password =  await bcrypt.hash(this.password,encryptOptions.soil)
+    }
+
+    @Column({default: 5})
     countOwnPoll: number
 
 
