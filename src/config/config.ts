@@ -36,7 +36,7 @@ export const connectionOptions: ConnectionOptions = {
 }
 
 export const encryptOptions = {
-    soil: process.env.CRYPTO_SOIL
+    soil: process.env.CRYPTO_SOIL || 'super_secret'
 }
 
 export const jwtConstants = {

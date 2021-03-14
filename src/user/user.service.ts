@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { OneToMany, Repository } from 'typeorm';
+import { CreateUserDto } from './dto/create-user-dto';
 import { User } from './user/user.entity';
+import { omit } from 'lodash'
 
 @Injectable()
 export class UserService {
@@ -20,7 +22,14 @@ export class UserService {
     async remove(id: string): Promise<void> {
         await this.usersRepository.delete(id);
     }
-    findOneByEmail(email : string): Promise<User> {
-        return this.usersRepository.findOne({email});
+
+
+    async findOneByEmail(email : string): Promise<User> {
+        return  await this.usersRepository.findOne({email});
+    }
+
+    async createUser(createUserDto: CreateUserDto){
+        const result = await this.usersRepository.save(Object.assign(new User(),createUserDto))
+        return omit(result,['password'])
     }
 }

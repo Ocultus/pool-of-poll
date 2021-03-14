@@ -28,7 +28,7 @@ export class User {
     @BeforeUpdate()
     @BeforeInsert()
     async hashPassword () {
-      this.password =  await bcrypt.hash(this.password,encryptOptions.soil)
+      this.password =  await bcrypt.hash(this.password,10)
     }
 
     @Column({default: 5})
