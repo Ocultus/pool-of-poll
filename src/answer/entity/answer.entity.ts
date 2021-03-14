@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Poll } from "./poll.entity";
-import { User } from "./user.entity";
+import { Poll } from "../../poll/entity/poll.entity";
+import { User } from "../../user/user/user.entity";
 
 @Entity()
 export class Answer {

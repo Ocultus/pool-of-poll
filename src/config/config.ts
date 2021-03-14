@@ -11,7 +11,7 @@ const config = {
     database: process.env.DB_NAME,
 }
 
-const connectionOptions: ConnectionOptions = {
+export const connectionOptions: ConnectionOptions = {
     type: 'postgres',
     host: config.host,
     port: 5432,
@@ -35,8 +35,10 @@ const connectionOptions: ConnectionOptions = {
      ],
 }
 
-const encryptOptions = {
-    soil: process.env.CRYPTO_SOIL
+export const encryptOptions = {
+    soil: process.env.CRYPTO_SOIL || 'super_secret'
 }
 
-export = connectionOptions
+export const jwtConstants = {
+    secret: process.env.JWT_SECRET
+}
